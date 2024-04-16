@@ -21,8 +21,7 @@ Fertig:
   - Script: `2-clean-genres.r`
 
 ToDo:
-- Column SteamGames.`Categories`
-- Column SteamGames.`Tags`
+- ...
 
 Nice to have:
 - Column SteamGames.`Developers`
@@ -34,3 +33,5 @@ Wahrscheinlich nicht benötigt:
 - Column SteamGames.`Movies`
 
 Derzeit in Arbeit:
+- Column SteamGames.`Categories`
+- Column SteamGames.`Tags`
