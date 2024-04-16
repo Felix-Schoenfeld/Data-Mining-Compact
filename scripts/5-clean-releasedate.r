@@ -22,9 +22,13 @@ for (i in seq_len(total)) {
   if (substring(current_date_str, 6, 6) == ',') {
     day <- paste("0", substring(current_date_str, 5, 5), sep = "")
     year <- substring(current_date_str, 8, 11)
-  } else {
+  } else if (substring(current_date_str, 7, 7) == ',') {
     day <- substring(current_date_str, 5, 6)
     year <- substring(current_date_str, 9, 12)
+  } else {
+    # Case: no day -> put 1st of month
+    day <- "01"
+    year <- substring(current_date_str, 5, 8)
   }
 
   new_date <- paste(year, "-", month, "-", day, sep = "")
@@ -32,6 +36,10 @@ for (i in seq_len(total)) {
   status_progress <- paste("(", count, "/", total, ")", sep = "")
   status <- paste(current_date_str, "->", new_date, status_progress, "\n", sep = "\t")
   cat(status)
+
+  # Check validity
+  check <- str_detect(new_date, "\\d\\d\\d\\d-\\d\\d-\\d\\d")
+  stopifnot(check)
 
   # Replace entry with new entry
   query <- "UPDATE SteamGames
