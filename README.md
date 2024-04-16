@@ -23,6 +23,8 @@ Fertig:
   - Script: `3-clean-categories.r`
 - Column SteamGames.`Tags` -> Table `Tags` + Table `HasTag`
   - Script: `4-clean-tags.r`
+- Column SteamGames.`Releasedate` (format)
+  - Script: `5-clean-releasedate.r`
 
 ToDo:
 - ...
