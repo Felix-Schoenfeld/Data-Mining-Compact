@@ -28,6 +28,7 @@ ToDo:
 - ...
 
 Nice to have:
+- Column SteamGames.`Estimatedowners`
 - Column SteamGames.`Developers`
 - Column SteamGames.`Publishers`
 
