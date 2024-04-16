@@ -28,6 +28,7 @@ sql_statement <- "CREATE TABLE IF NOT EXISTS Languages (
     LanguageId INTEGER PRIMARY KEY AUTOINCREMENT,
     LanguageName TEXT NOT NULL UNIQUE);"
 dbExecute(con, sql_statement)
+cat("Table added: Languages\n")
 sql_statement <- "CREATE TABLE IF NOT EXISTS UsesLanguage (
     GameId INTEGER NOT NULL,
     LanguageId INTEGER NOT NULL,
@@ -35,12 +36,14 @@ sql_statement <- "CREATE TABLE IF NOT EXISTS UsesLanguage (
     FOREIGN KEY(GameId) REFERENCES SteamGames(AppID),
     PRIMARY KEY(GameId, LanguageId));"
 dbExecute(con, sql_statement)
+cat("Table added: UsesLanguage\n")
 
 # Genres
 sql_statement <- "CREATE TABLE IF NOT EXISTS Genres (
     GenreId INTEGER PRIMARY KEY AUTOINCREMENT,
     GenreName TEXT NOT NULL UNIQUE);"
 dbExecute(con, sql_statement)
+cat("Table added: Genres\n")
 sql_statement <- "CREATE TABLE IF NOT EXISTS IsGenre (
     GameId INTEGER NOT NULL,
     GenreId INTEGER NOT NULL,
@@ -48,12 +51,14 @@ sql_statement <- "CREATE TABLE IF NOT EXISTS IsGenre (
     FOREIGN KEY(GameId) REFERENCES SteamGames(AppID),
     PRIMARY KEY(GameId, GenreId));"
 dbExecute(con, sql_statement)
+cat("Table added: IsGenre\n")
 
 # Kategorien
 sql_statement <- "CREATE TABLE IF NOT EXISTS Categories (
     CategoryId INTEGER PRIMARY KEY AUTOINCREMENT,
     CategoryName TEXT NOT NULL UNIQUE);"
 dbExecute(con, sql_statement)
+cat("Table added: Categories\n")
 sql_statement <- "CREATE TABLE IF NOT EXISTS IsCategory (
     GameId INTEGER NOT NULL,
     CategoryId INTEGER NOT NULL,
@@ -61,12 +66,14 @@ sql_statement <- "CREATE TABLE IF NOT EXISTS IsCategory (
     FOREIGN KEY(GameId) REFERENCES SteamGames(AppID),
     PRIMARY KEY(GameId, CategoryId));"
 dbExecute(con, sql_statement)
+cat("Table added: IsCategory\n")
 
 # Tags
 sql_statement <- "CREATE TABLE IF NOT EXISTS Tags (
     TagId INTEGER PRIMARY KEY AUTOINCREMENT,
     TagName TEXT NOT NULL UNIQUE);"
 dbExecute(con, sql_statement)
+cat("Table added: Tags\n")
 sql_statement <- "CREATE TABLE IF NOT EXISTS HasTag (
     GameId INTEGER NOT NULL,
     TagId INTEGER NOT NULL,
@@ -74,6 +81,8 @@ sql_statement <- "CREATE TABLE IF NOT EXISTS HasTag (
     FOREIGN KEY(GameId) REFERENCES SteamGames(AppID),
     PRIMARY KEY(GameId, TagId));"
 dbExecute(con, sql_statement)
+cat("Table added: HasTag\n")
 
 
 dbDisconnect(con)
+cat("DB created.\n")

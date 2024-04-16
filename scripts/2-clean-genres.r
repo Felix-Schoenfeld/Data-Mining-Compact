@@ -121,4 +121,4 @@ dbExecute(con, sql_statement)
 
 dbDisconnect(con)
 
-cat("Completed.")
+cat(paste("Completed with ", errors, " errors.\n"))
