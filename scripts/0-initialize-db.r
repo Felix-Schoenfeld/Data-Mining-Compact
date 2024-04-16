@@ -21,6 +21,8 @@ names(csv_data) <- gsub("\\.", "", names(csv_data))
 
 dbWriteTable(con, "SteamGames", csv_data, overwrite = TRUE, check.names = FALSE)
 
+# Verhindert, dass Skripte 11 Stunden dauern
+dbSendQuery(con, "CREATE INDEX GameIndex on SteamGames(AppId)")
 
 # Tabellen erstellen
 # Sprachen
