@@ -5,6 +5,13 @@ library("RSQLite")
 db_path <- "../db/SteamGames.db"
 csv_path <- "../sources/games.csv"
 
+# Alte Dateien entfernen
+if (file.exists(db_path)) {
+  file.remove(db_path)
+  cat("Alte DB entfernt.\n")
+}
+cat("Generiere DB...\n")
+
 con <- dbConnect(SQLite(), db_path)
 csv_data <- read.csv(csv_path)
 
