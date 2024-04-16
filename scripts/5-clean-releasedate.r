@@ -12,6 +12,7 @@ errors <- 0
 count <- 0
 total <- length(results[,2])
 
+# Transaktion
 dbBegin(con)
 for (i in seq_len(total)) {
   count <- count + 1
@@ -62,3 +63,5 @@ if (errors > 0) {
 } else {
   dbCommit(con)
 }
+
+dbDisconnect(con)

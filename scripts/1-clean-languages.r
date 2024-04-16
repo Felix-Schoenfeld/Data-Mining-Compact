@@ -9,6 +9,8 @@ results <- dbGetQuery(con, paste("SELECT Supportedlanguages FROM SteamGames"))
 
 list_of_all_languages <- list()
 
+# Transaktion
+dbBegin(con)
 for (i in 1:nrow(results)) {
   cat(paste(i, "/", nrow(results), "...finding all Languages\n"), sep = "\t")
   entry <- results[i,]
@@ -121,6 +123,13 @@ stopifnot(errors < 1)
 sql_statement <- "ALTER TABLE SteamGames DROP COLUMN Supportedlanguages"
 
 dbExecute(con, sql_statement)
+
+# Transaktion durchführen falls keine Fehler aufgetreten sind.
+if (errors > 0) {
+  dbRollback(con)
+} else {
+  dbCommit(con)
+}
 
 dbDisconnect(con)
 
