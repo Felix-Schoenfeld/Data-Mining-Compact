@@ -15,6 +15,7 @@ cat("Generiere DB...\n")
 con <- dbConnect(SQLite(), db_path)
 csv_data <- read.csv(csv_path)
 
+dbBegin(con)
 # Leerzeichen und Punkte aus Spalten-Namen entfernen
 names(csv_data) <- gsub(" ", "", names(csv_data))
 names(csv_data) <- gsub("\\.", "", names(csv_data))
@@ -23,6 +24,7 @@ dbWriteTable(con, "SteamGames", csv_data, overwrite = TRUE, check.names = FALSE)
 
 # Verhindert, dass Skripte 11 Stunden dauern
 dbSendQuery(con, "CREATE INDEX GameIndex on SteamGames(AppId)")
+cat("Index added: GameIndex@SteamGames(AppId)\n")
 
 # Tabellen erstellen
 # Sprachen
@@ -85,6 +87,39 @@ sql_statement <- "CREATE TABLE IF NOT EXISTS HasTag (
 dbExecute(con, sql_statement)
 cat("Table added: HasTag\n")
 
+# Weitere Indexes
+# Sprache
+dbSendQuery(con, "CREATE INDEX LanguageIndex on Languages(LanguageId)")
+cat("Index added: LanguageIndex@Languages(LanguageId)\n")
+dbSendQuery(con, "CREATE INDEX UsesLanguageLangugeIndex on UsesLanguage(LanguageId)")
+cat("Index added: UsesLanguageLangugeIndex@UsesLanguage(LanguageId)\n")
+dbSendQuery(con, "CREATE INDEX UsesLanguageGameIndex on UsesLanguage(GameId)")
+cat("Index added: UsesLanguageGameIndex@UsesLanguage(GameId)\n")
 
+# Genre
+dbSendQuery(con, "CREATE INDEX GenreIndex on Genres(GenreId)")
+cat("Index added: GenreIndex@Genres(GenreId)\n")
+dbSendQuery(con, "CREATE INDEX IsGenreGenreIndex on IsGenre(GenreId)")
+cat("Index added: IsGenreGenreIndex@IsGenre(GenreId)\n")
+dbSendQuery(con, "CREATE INDEX IsGenreGameIndex on IsGenre(GameId)")
+cat("Index added: IsGenreGameIndex@IsGenre(GameId)\n")
+
+# Kategorie
+dbSendQuery(con, "CREATE INDEX CategoryIndex on Categories(CategoryId)")
+cat("Index added: CategoryIndex@Categories(CategoryId)\n")
+dbSendQuery(con, "CREATE INDEX IsCategoryCategoryIndex on IsCategory(CategoryId)")
+cat("Index added: IsCategoryCategoryIndex@IsCategory(CategoryId)\n")
+dbSendQuery(con, "CREATE INDEX IsCategoryGameIndex on IsCategory(GameId)")
+cat("Index added: IsCategoryGameIndex@IsCategory(GameId)\n")
+
+# Tags
+dbSendQuery(con, "CREATE INDEX TagIndex on Tags(TagId)")
+cat("Index added: TagIndex@Tags(TagId)\n")
+dbSendQuery(con, "CREATE INDEX HasTagTagIndex on HasTag(TagId)")
+cat("Index added: HasTagTagIndex@HasTag(TagId)\n")
+dbSendQuery(con, "CREATE INDEX HasTagGameIndex on HasTag(GameId)")
+cat("Index added: HasTagGameIndex@HasTag(GameId)\n")
+
+dbCommit(con)
 dbDisconnect(con)
 cat("DB created.\n")

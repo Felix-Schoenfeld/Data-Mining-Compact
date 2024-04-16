@@ -27,21 +27,14 @@ Fertig:
   - Script: `5-clean-releasedate.r`
 
 ToDo:
-- Index für Table `Languages`
-- Index für Table `UsesLanguage`
-- Index für Table `Genres`
-- Index für Table `Genres`
-- Index für Table `IsGenre`
-- Index für Table `Categories`
-- Index für Table `IsCategory`
-- Index für Table `Tags`
-- Index für Table `HasTag`
+- ...
 
 
 Nice to have:
 - Column SteamGames.`Estimatedowners`
 - Column SteamGames.`Developers`
 - Column SteamGames.`Publishers`
+- Schnellere Scripts
 
 Wahrscheinlich nicht benötigt:
 - Column SteamGames.`Fullaudiolangauges`
