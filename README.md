@@ -21,6 +21,8 @@ Fertig:
   - Script: `2-clean-genres.r`
 - Column SteamGames.`Categories` -> Table `Categories` + Table `IsCategory`
   - Script: `3-clean-categories.r`
+- Column SteamGames.`Tags` -> Table `Tags` + Table `HasTag`
+  - Script: `4-clean-tags.r`
 
 ToDo:
 - ...
@@ -33,6 +35,3 @@ Wahrscheinlich nicht benötigt:
 - Column SteamGames.`Fullaudiolangauges`
 - Column SteamGames.`Screenshots`
 - Column SteamGames.`Movies`
-
-Derzeit in Arbeit:
-- Column SteamGames.`Tags`
