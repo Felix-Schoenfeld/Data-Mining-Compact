@@ -1,3 +1,4 @@
+.libPaths( c( .libPaths(), "~/.R/x86_64-pc-linux-gnu-library/4.3") )
 # Dieses Script teilt das Categories Column in eine eigene Tabelle
 
 # Dieser Teil generiert eine Liste aller Categories
