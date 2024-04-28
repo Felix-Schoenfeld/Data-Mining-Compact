@@ -1,3 +1,4 @@
+.libPaths( c( .libPaths(), "~/.R/x86_64-pc-linux-gnu-library/4.3") )
 # Dieses Script estellt eine SQLite-DB aus der CSV-Datei
 
 library("RSQLite")
@@ -11,6 +12,8 @@ if (file.exists(db_path)) {
   cat("Alte DB entfernt.\n")
 }
 cat("Generiere DB...\n")
+
+stopifnot(file.exists(csv_path))
 
 con <- dbConnect(SQLite(), db_path)
 csv_data <- read.csv(csv_path)
